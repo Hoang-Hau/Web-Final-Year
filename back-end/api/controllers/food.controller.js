@@ -35,7 +35,6 @@ exports.getAllFood = async (req, res) => {
     if (typeof req.body.searchtext !== 'undefined') {
         searchText = req.body.searchtext;
     }
-    let searchPublisher = null;
     let searchAuthor = null;
     searchAuthor = await authorController.getIDBySearchText(searchText);
     let searchCategory = null;

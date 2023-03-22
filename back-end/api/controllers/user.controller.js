@@ -127,7 +127,7 @@ exports.login = async (req, res) => {
         lastName: userFind.lastName,
         address: userFind.address,
         phone_number: userFind.phone_number,
-        id: userFind._id
+        id: userFind._id,
     }});
 }
 

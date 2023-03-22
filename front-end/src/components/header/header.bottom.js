@@ -49,9 +49,10 @@ class HeaderBottom extends Component {
 
     }
     handeSearch = (e) => {
-        if(e === 13) {
+        console.log("check",e)
+  
             this.props.searchTextSubmit()
-        }
+        
     }
     render() {
         return (

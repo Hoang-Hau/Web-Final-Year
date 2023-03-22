@@ -20,12 +20,7 @@ class ProductDetail extends Component {
             logout={() => this.props.logout()}
             history={this.props.history}
           />
-          <HeaderBottom
-            sortType={this.props.sortType}
-            setSortType={value => this.props.setSortType(value)}
-            setSearchText={value => this.props.setSearchText(value)}
-            searchTextSubmit={() => this.props.searchTextSubmit()}
-          />
+         
         </header>
         <ContentProductDetail
           category={this.props.category}
