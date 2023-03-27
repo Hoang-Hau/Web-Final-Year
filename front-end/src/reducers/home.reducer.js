@@ -1,5 +1,5 @@
-import { homeTypes, sortTypes } from '../constants/action.types'
 import { combineReducers } from 'redux'
+import { homeTypes, sortTypes } from '../constants/action.types'
 
 const category = (state = { data: [] }, action) => {
     switch (action.type) {
@@ -36,7 +36,7 @@ const author = (state = {data: []}, action) => {
 }
 
 const product = (state = {
-    data: [], page: 1, totalpage: null, title: 'ALL PRODUCT', searchtext: '',
+    data: [], page: 1, totalpage: null, title: 'Tất cả món ăn', searchtext: '',
     sortType: sortTypes.SORT_DAY_DECREASED, sortOrder: -1
 }, action) => {
     switch (action.type) {
@@ -90,7 +90,7 @@ const product = (state = {
             }
         }
         case homeTypes.RESET_PRODUCT: {
-            return { data: [], page: 1, totalpage: null, title: 'ALL PRODUCT',
+            return { data: [], page: 1, totalpage: null, title: 'Tất cả món ăn',
             sortType: sortTypes.SORT_DAY_DECREASED, sortOrder: -1}
         }
         case homeTypes.SET_SEARCH_TEXT: {

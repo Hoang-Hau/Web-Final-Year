@@ -1,7 +1,6 @@
 import React, { Component } from "react";
+import { Button, Modal } from "react-bootstrap";
 import storeConfig from "../../config/storage.config";
-import { Modal, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 class ContentProductDetail extends Component {
   constructor(props) {
     super(props);
@@ -115,7 +114,7 @@ class ContentProductDetail extends Component {
     let product = {...this.props.mproductDetail};
     product.count = this.state.quantity;
     product.size = this.state.size;
-    if(product.size==='' || product.count < 1){
+    if( product.count < 1){
      
       this.setState({
         noti: true,
@@ -157,7 +156,7 @@ class ContentProductDetail extends Component {
           <div className="row">
             <div className="col-sm-3">
               <div className="left-sidebar">
-                <h2>Category</h2>
+                {/* <h2>Danh mục</h2>
                 <div className="panel-group category-products" id="accordian">
                   {this.props.category.map((element, index) => {
                     return (
@@ -171,14 +170,14 @@ class ContentProductDetail extends Component {
                     );
                   })}
                 </div>
-                
+                 */}
               </div>
             </div>
-            <div className="col-sm-9 padding-right">
-              <div className="product-details">
+            <div className="col-sm-12 padding-right">
+              <div className="">
                 <div className="col-sm-5">
                   <div >
-                    <img style={{height:"380px",width:"350px",overflow:"hidden"}} src={this.props.mproductDetail.img} alt="" />
+                    <img style={{height:"100%",width:"100%",overflow:"hidden"}} src={this.props.mproductDetail.img} alt="" />
                   </div>
                  
                 </div>
@@ -200,10 +199,11 @@ class ContentProductDetail extends Component {
                         
                       </div>
                       <div className='count-product'>
-                        <p className='count'>Số Lượng:</p>
+                        <p className='count' style={{marginRight:"10px"}} >Số Lượng:  </p>
                         <input
                         type="number"
-                        min="0"
+                        min="1"
+                        max={this.props.mproductDetail.amount}
                         onChange={e =>
                           this.setState({ quantity: e.target.value })
                         }
@@ -211,28 +211,6 @@ class ContentProductDetail extends Component {
                       />
                       </div>
                       <div className="product-size row">
-                    <label className="col-3">Size:</label>
-                    <div className="col-9">
-                      <select onChange={(e) => this.setState({
-                        size: e.target.value
-                      })} className='size'>
-                        <option
-                          value=""
-                          disabled
-                          selected
-                          style={{ display: "none" }}
-                        >
-                          Chọn Size
-                        </option>
-                        {this.props.mproductDetail.size[0] !== undefined ?  this.props.mproductDetail.size[0]
-                          .split(",")
-                          .map((item, index) => (
-                            <option key={index} value={item}>
-                              {item}
-                            </option>
-                          )) : null}
-                      </select>
-                    </div>
                   </div>
                       <button
                         onClick={() => this.submitOrder()}
@@ -248,6 +226,9 @@ class ContentProductDetail extends Component {
                       <b>Danh mục:</b> {this.props.nameCategory}
                     </p>
                     <p>
+                      <b>Số lượng:</b> {this.props.mproductDetail.amount}
+                    </p>
+                    <p style={{marginBottom:"30px"}}>
                       <b>Ngày tạo</b>{" "}
                       {new Date(
                         this.props.mproductDetail.release_date
@@ -277,18 +258,13 @@ class ContentProductDetail extends Component {
                   </Modal>
                 </div>
                 {xhtml}
-               
-                  {/* <div className="col-sm-12 review-product">
+                  <div className="col-sm-12 ">
+                  <h3>Miêu tả sản phẩm</h3>
+                      <p>{this.props.mproductDetail.describe}</p>
                     <div>
                       <h3>Review Sản Phẩm</h3>
-                    </div>
-                   
-                  </div> */}
-                  <div className="tab-content">
-
-                    <div className="tab-pane fade active in" id="reviews">
-                      <div className="col-sm-12">
-                        {/* <div className="content-conment">
+                    </div>   
+                    <div className="content-conment">
                           {this.props.comment.map((element, index) => {
                             return (
                               <p>
@@ -296,23 +272,32 @@ class ContentProductDetail extends Component {
                               </p>
                             );
                           })}
+                          
                           <div className='Pagination-flex'>
                             {this.renderPagination()}
                           </div>
                          
                         </div>
-                        <hr />
-                        <p style={{ color: "#5BBCEC" }}>
-                          {this.state.notificationComment}
-                        </p> */}
-                          
+                        <div>
+                     
+                    </div>
+                        {/* <div className="tab-pane fade active in" id="reviews">
+                      <div className="col-sm-12">                                               
                         <div>
                           <h3>Miêu tả sản phẩm</h3>
                           <p>{this.props.mproductDetail.describe}</p>
                           
                         </div>
                       </div>
-                    </div>
+                    </div> */}
+                        <hr />
+                        <p style={{ color: "#5BBCEC" }}>
+                          {this.state.notificationComment}
+                        </p>              
+                  </div> 
+                  <div className="tab-content">
+
+                 
                   </div>
              
                

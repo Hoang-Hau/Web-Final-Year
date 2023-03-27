@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { sortTypes } from '../../constants/action.types'
-import _ from 'lodash'
 class HeaderBottom extends Component {
     constructor(props) {
         super(props)
@@ -49,9 +47,10 @@ class HeaderBottom extends Component {
 
     }
     handeSearch = (e) => {
-        if(e === 13) {
+        console.log("check",e)
+  
             this.props.searchTextSubmit()
-        }
+        
     }
     render() {
         return (

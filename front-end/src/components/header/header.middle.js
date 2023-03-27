@@ -91,7 +91,7 @@ class HeaderMiddle extends Component {
             <div className="col-sm-8">
               <div className="shop-menu pull-right">
                 <ul className="nav navbar-nav collapse navbar-collapse">
-                
+               
                 <li className='dropdown'>
                     <a className='Setting-item'>
                       <i className="fa fa-user dropbtn"></i>

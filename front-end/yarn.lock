@@ -1536,10 +1536,10 @@ caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
   resolved "https://registry.npmjs.org/caniuse-db/-/caniuse-db-1.0.30000832.tgz"
   integrity sha1-r+NMn3xiE5/RxgfbKrcwi7tqUVg=
 
-caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000792:
-  version "1.0.30000832"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000832.tgz"
-  integrity sha512-WMC2GiGTPxGywFL70h+CnP7GAYo6LM6JSI1sF13vAZfXCzOeunHzl20DpfbDGMdvtT2wpqvabY96MHEp/la+BQ==
+caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000792, caniuse-lite@^1.0.30001465:
+  version "1.0.30001465"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001465.tgz"
+  integrity sha512-HvjgL3MYAJjceTDCcjRnQGjwUz/5qec9n7JPOzUursUoOTIsYCSDOb1l7RsnZE8mjbxG78zVRCKfrBXyvChBag==
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"

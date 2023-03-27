@@ -1,9 +1,9 @@
-	import React, { Component } from "react"
+	import React from "react"
 
 	const FooterMiddle = () => (
 		<div className="footer-widget">
 				<div className="container">
-					
+				
 				</div>
 			</div>
 	)

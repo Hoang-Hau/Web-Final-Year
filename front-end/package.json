@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "caniuse-lite": "^1.0.30001465",
     "lodash": "^4.17.10",
     "react": "^17.0.0-rc.0",
     "react-bootstrap": "^0.32.1",
