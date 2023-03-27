@@ -10,6 +10,10 @@ const categoryRouter = require("./api/routers/categoy.router");
 const foodRouter = require("./api/routers/food.router");
 const authorRouter = require("./api/routers/author.router");
 const restaurantRouter = require("./api/routers/restaurant.router");
+const commentRouter = require("./api/routers/comment.router");
+const billRouter = require("./api/routers/bill.router");
+const cartRouter = require("./api/routers/cart.router");
+const adminRouter = require("./api/routers/admin.router");
 const URL = `mongodb+srv://quanlycang:i9Ckja1C9SWUvepw@cluster0.xkqgiii.mongodb.net/?retryWrites=true&w=majority`;
 const test = () => {
   Object.keys(data).forEach(function (k) {
@@ -28,16 +32,6 @@ const test = () => {
         ward: _ward,
       });
     });
-    const new_address = new address({
-      city: data[k].name,
-      district: _dic,
-      code: data[k].code,
-    });
-    try {
-      new_address.save();
-    } catch (Err) {
-      console.log(Err);
-    }
   });
 };
 // test();
@@ -55,6 +49,10 @@ userRouter(app);
 categoryRouter(app);
 foodRouter(app);
 authorRouter(app);
+commentRouter(app);
+billRouter(app);
+cartRouter(app);
+adminRouter(app);
 restaurantRouter(app);
 
 app.get("/", (req, res) => {
