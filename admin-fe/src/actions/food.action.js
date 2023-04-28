@@ -35,6 +35,30 @@ export const authorSetTotalPage = (totalpage) => ({
   totalpage,
 });
 
+export const restaurantSetPage = (page) => ({
+  type: foodTypes.RESTAURANT_SET_PAGE,
+  page,
+});
+export const restaurantSetTotalPage = (totalpage) => ({
+  type: foodTypes.RESTAURANT_SET_TOTAL_PAGE,
+  totalpage,
+});
+export const categorySetPage = (page) => ({
+  type: foodTypes.CATEGORY_SET_PAGE,
+  page,
+});
+export const categorySetTotalPage = (totalpage) => ({
+  type: foodTypes.CATEGORY_SET_TOTAL_PAGE,
+  totalpage,
+});
+export const publisherSetPage = (page) => ({
+  type: foodTypes.PUBLISHER_SET_PAGE,
+  page,
+});
+export const publisherSetTotalPage = (totalpage) => ({
+  type: foodTypes.PUBLISHER_SET_TOTAL_PAGE,
+  totalpage,
+});
 export const deleteFood = (id) => async (dispatch, getState) => {
   let res;
   try {
