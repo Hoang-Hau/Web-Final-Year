@@ -6,12 +6,13 @@ const bill = new Schema({
   id_user: {
     type: String,
     required: [true, "can't be blank"],
-    index: true
+    index: true,
   },
   date: {
     type: Date,
     default: Date.now,
   },
+
   products: {
     type: [
       {
@@ -26,10 +27,10 @@ const bill = new Schema({
         count: Number,
         _id: String,
         size: String,
-      }
+      },
     ],
     required: true,
-    minlength: 1
+    minlength: 1,
   },
   total: Number,
   address: String,
@@ -38,7 +39,7 @@ const bill = new Schema({
   token: String,
   issend: {
     type: String,
-    default: '99'
-  }
+    default: "99",
+  },
 });
 module.exports = mongoose.model("bill", bill);
