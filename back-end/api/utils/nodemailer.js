@@ -53,3 +53,26 @@ exports.sendEmailForgotPassword = async (email, token) => {
   }
   return true;
 };
+exports.sendMailConfirmPayment = async (email, token) => {
+  let mailOptions = {
+    from: '"SHOOPER" <hoangconghau2001@gmail.com>', // sender address
+    to: email, // list of receivers
+    subject: "Payment Verification Token", // Subject line
+    text: "Hello my friend",
+    html:
+      "<b>verify your account</b>" +
+      " <br/>" +
+      "<span>Please verify your account by clicking the link</span>" +
+      "<br/>" +
+      "<span>http://localhost:3000/payment/" +
+      token +
+      "</span>",
+  };
+  try {
+    let send = await transporter.sendMail(mailOptions);
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+  return true;
+};
