@@ -377,36 +377,3 @@ exports.getProcessing = async (req, res) => {
       res.status(200).json({ data: docs, totalPage });
     });
 };
-
-exports.updateIssend = async (req, res) => {
-  if (
-    typeof req.body.name === "undefined" ||
-    typeof req.body.id === "undefined"
-  ) {
-    res.status(422).json({ msg: "Invalid data" });
-    return;
-  }
-  let id = req.body.id;
-  let issend = req.body.name;
-  let billFind;
-  try {
-    billFind = await bill.findById(id);
-  } catch (err) {
-    res.status(500).json({ msg: err });
-    return;
-  }
-  if (billFind === null) {
-    res.status(422).json({ msg: "not found" });
-    return;
-  }
-
-  billFind.issend = issend;
-  try {
-    await billFind.save();
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: err });
-    return;
-  }
-  res.status(201).json({ msg: "success", bill: { issend: issend } });
-};
