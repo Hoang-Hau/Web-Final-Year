@@ -9,51 +9,10 @@ class Category extends Component {
       name: null,
       id: null,
       noti: null,
-      currType: "add"
+      currType: "add",
     };
   }
-  componentWillMount() {
-    let tmp = [];
-    for (let i = 1; i <= this.props.totalpage; i++) {
-      tmp.push(i);
-    }
-    this.setState({ pagination: tmp });
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.totalpage !== this.props.totalpage) {
-      let tmp = [];
-      for (let i = 1; i <= nextProps.totalpage; i++) {
-        tmp.push(i);
-      }
-      this.setState({ pagination: tmp });
-    }
-    if (nextProps.isadd === false) {
-      this.setState({
-        noti: "Please Change name"
-      });
-    } else if (nextProps.isadd === true) {
-      this.setState({
-        noti: "",
-        name: "",
-        currType: "add"
-      });
-    }
-    if (nextProps.isupdate === false) {
-      this.setState({
-        noti: "update fail"
-      });
-    } else if (nextProps.isupdate === true) {
-      this.setState({
-        noti: "",
-        id: null,
-        name: "",
-        currType: "add"
-      });
-    }
-  }
-  add = () => {
-    this.props.addCategory(this.state.name);
-  };
+
   renderPagination() {
     if (this.state.pagination.length === 0) {
       return null;
@@ -109,10 +68,7 @@ class Category extends Component {
             >
               Update
             </button>
-            <button
-              onClick={() => this.reset()}
-              className="btn-custom"
-            >
+            <button onClick={() => this.reset()} className="btn-custom">
               Reset
             </button>
           </div>
@@ -133,10 +89,7 @@ class Category extends Component {
             >
               Update
             </button>
-            <button
-              onClick={() => this.reset()}
-              className="btn-custom"
-            >
+            <button onClick={() => this.reset()} className="btn-custom">
               Reset
             </button>
           </div>
@@ -145,13 +98,13 @@ class Category extends Component {
     }
   };
   reset = () => {
-      this.setState({
-        noti: "",
-        id: null,
-        name: "",
-        currType: "add"
-      })
-  }
+    this.setState({
+      noti: "",
+      id: null,
+      name: "",
+      currType: "add",
+    });
+  };
 
   render() {
     return (
@@ -167,10 +120,12 @@ class Category extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <i className="fa fa-table" />Table
+                <i className="fa fa-table" />
+                Table
               </li>
               <li>
-                <i className="fa fa-th-list" />Category Manager
+                <i className="fa fa-th-list" />
+                Category Manager
               </li>
             </ol>
           </div>
@@ -201,7 +156,7 @@ class Category extends Component {
                                   currname: element.name,
                                   name: element.name,
                                   id: element._id,
-                                  currType: "update"
+                                  currType: "update",
                                 })
                               }
                               className="btn btn-success"
@@ -209,7 +164,9 @@ class Category extends Component {
                               <i className="icon_check_alt2" />
                             </a>
                             <a
-                              onClick={() => this.props.deleteCategory(element._id)}
+                              onClick={() =>
+                                this.props.deleteCategory(element._id)
+                              }
                               className="btn btn-danger"
                             >
                               <i className="icon_close_alt2" />
@@ -238,9 +195,9 @@ class Category extends Component {
                       </label>
                       <div className="col-lg-10">
                         <input
-                          onChange={e => {
+                          onChange={(e) => {
                             this.setState({
-                              name: e.target.value
+                              name: e.target.value,
                             });
                           }}
                           value={this.state.name}
