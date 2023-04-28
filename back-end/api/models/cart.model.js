@@ -10,6 +10,25 @@ const cart = new Schema({
     type: Date,
     default: new Date(),
   },
+  products: {
+    type: [
+      {
+        id_category: String,
+        name: String,
+        price: Number,
+        release_date: Date,
+        img: String,
+        describe: String,
+        id_nsx: String,
+        id_nsx: String,
+        count: Number,
+        _id: String,
+        size: String,
+      },
+    ],
+    required: true,
+    minlength: 1,
+  },
 });
 
 module.exports = mongoose.model("cart", cart);

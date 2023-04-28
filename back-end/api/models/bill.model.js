@@ -32,14 +32,5 @@ const bill = new Schema({
     required: true,
     minlength: 1,
   },
-  total: Number,
-  address: String,
-  phone: String,
-  name: String,
-  token: String,
-  issend: {
-    type: String,
-    default: "99",
-  },
 });
 module.exports = mongoose.model("bill", bill);
