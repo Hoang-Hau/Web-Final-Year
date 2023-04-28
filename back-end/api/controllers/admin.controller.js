@@ -83,6 +83,79 @@ exports.addfood = async (req, res) => {
   });
   res.status(201).json({ msg: "success" });
 };
+exports.updatefood = async (req, res) => {
+  if (
+    typeof req.body.name === "undefined" ||
+    typeof req.body.id === "undefined" ||
+    typeof req.body.category === "undefined" ||
+    typeof req.body.restaurant === "undefined" ||
+    typeof req.body.price === "undefined" ||
+    typeof req.body.release_date === "undefined" ||
+    typeof req.body.describe === "undefined" ||
+    typeof req.body.chef === "undefined" ||
+    typeof req.body.amount === 0
+  ) {
+    res.status(422).json({ msg: "Invalid data" });
+    return;
+  }
+  let {
+    name,
+    id,
+    category,
+    id_category,
+    restaurant,
+    id_restaurant,
+    price,
+    release_date,
+    describe,
+    chef,
+    amount,
+  } = req.body;
+  console.log("chef", chef);
+  let foodFind;
+  try {
+    foodFind = await food.findById(id);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+    return;
+  }
+  if (foodFind === null) {
+    res.status(404).json({ msg: "Not found" });
+    return;
+  }
+  let urlImg = null;
+  if (typeof req.file !== "undefined") {
+    urlImg = await uploadImg(req.file.path);
+  }
+  if (urlImg !== null) {
+    if (urlImg === false) {
+      res.status(500).json({ msg: "server error" });
+      return;
+    }
+  }
+  if (urlImg === null) urlImg = foodFind.img;
+
+  foodFind.category = category;
+  foodFind.id_category = id_category;
+  foodFind.id_restaurant = id_restaurant;
+  foodFind.name = name;
+  foodFind.price = parseFloat(price);
+  foodFind.release_date = release_date;
+  foodFind.describe = describe;
+  foodFind.chef = chef;
+  foodFind.category = category;
+  foodFind.restaurant = restaurant;
+  foodFind.img = urlImg;
+  foodFind.amount = amount;
+  foodFind.save((err, docs) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+
+  res.status(200).json({ msg: "success", data: foodFind });
+};
 
 exports.deletefood = async (req, res) => {
   if (typeof req.params.id === "undefined") {
