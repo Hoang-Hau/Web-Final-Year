@@ -32,7 +32,34 @@ class Food extends Component {
       check: [false, false, false, false, false, false],
     };
   }
-
+  componentWillMount() {
+    let tmp = [];
+    for (let i = 1; i <= this.props.totalpage; i++) {
+      tmp.push(i);
+    }
+    this.setState({ pagination: tmp });
+    this.checkedCheckbox = new Set();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.totalpage !== this.props.totalpage) {
+      let tmp = [];
+      for (let i = 1; i <= nextProps.totalpage; i++) {
+        tmp.push(i);
+      }
+      this.setState({ pagination: tmp });
+    }
+    if (nextProps.food !== null) {
+      this.setState({
+        imagePreviewUrl: nextProps.food.img,
+      });
+    }
+    if (nextProps.isadd === true) {
+      this.reset();
+    }
+    if (nextProps.isupdate === true) {
+      this.reset();
+    }
+  }
   renderPagination() {
     if (this.state.pagination.length === 0) {
       return null;
