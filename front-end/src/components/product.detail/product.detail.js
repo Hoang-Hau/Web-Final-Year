@@ -28,6 +28,14 @@ class ProductDetail extends Component {
           submitComment={(name, email, comment, id_product) =>
             this.props.submitComment(name, email, comment, id_product)
           }
+          comment={this.props.comment}
+          nameAuthor={this.props.nameAuthor}
+          addToCart={(product) => this.props.addToCart(product)}
+          totalpage={this.props.totalpage}
+          page={this.props.page}
+          backPage={() => this.props.backPage()}
+          nextPage={() => this.props.nextPage()}
+          setPage={(page) => this.props.setPage(page)}
         />
         <footer id="footer">
           <FooterTop />
