@@ -12,13 +12,11 @@ class ProductDetail extends Component {
     return (
       <div>
         <header id="header">
-      
           <HeaderMiddle
             islogin={this.props.islogin}
             logout={() => this.props.logout()}
             history={this.props.history}
           />
-         
         </header>
         <ContentProductDetail
           category={this.props.category}
@@ -30,14 +28,6 @@ class ProductDetail extends Component {
           submitComment={(name, email, comment, id_product) =>
             this.props.submitComment(name, email, comment, id_product)
           }
-          comment={this.props.comment}
-          nameAuthor={this.props.nameAuthor}
-          addToCart={product => this.props.addToCart(product)}
-          totalpage={this.props.totalpage}
-          page={this.props.page}
-          backPage={() => this.props.backPage()}
-          nextPage={() => this.props.nextPage()}
-          setPage={page => this.props.setPage(page)}
         />
         <footer id="footer">
           <FooterTop />
