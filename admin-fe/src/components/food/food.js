@@ -4,7 +4,7 @@ class Food extends Component {
   constructor() {
     super();
     this.state = {
-      sizeall : ['L','M','S','X','XL','XXL'],
+      sizeall: ["L", "M", "S", "X", "XL", "XXL"],
       pagination: [],
       food: null,
       file: null,
@@ -16,50 +16,23 @@ class Food extends Component {
       name: "",
       release_date: null,
       price: "",
-      amount:0,
+      amount: 0,
       img: "",
       describe: "",
       id_nsx: "",
       id_author: "",
       id_category: "",
-      id_restaurant:"",
-      chef:"",
+      id_restaurant: "",
+      chef: "",
       restaurant: "Nhà hàng",
       noti: "",
       id: null,
       sizes: new Set(),
-      checksizes: '',
-      check: [false,false,false,false,false,false]
+      checksizes: "",
+      check: [false, false, false, false, false, false],
     };
   }
-  componentWillMount() {
-    let tmp = [];
-    for (let i = 1; i <= this.props.totalpage; i++) {
-      tmp.push(i);
-    }
-    this.setState({ pagination: tmp });
-    this.checkedCheckbox = new Set();
-  }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.totalpage !== this.props.totalpage) {
-      let tmp = [];
-      for (let i = 1; i <= nextProps.totalpage; i++) {
-        tmp.push(i);
-      }
-      this.setState({ pagination: tmp });
-    }
-    if (nextProps.food !== null) {
-      this.setState({
-        imagePreviewUrl: nextProps.food.img
-      });
-    }
-    if (nextProps.isadd === true) {
-      this.reset()
-    } 
-    if(nextProps.isupdate === true) {
-      this.reset()
-    }
-  }
+
   renderPagination() {
     if (this.state.pagination.length === 0) {
       return null;
@@ -94,19 +67,18 @@ class Food extends Component {
       );
     }
   }
-  handleChangeImg = img => {
-    if(img === undefined)
-      return
+  handleChangeImg = (img) => {
+    if (img === undefined) return;
     let reader = new FileReader();
     reader.onloadend = () => {
       this.setState({
         file: img,
-        img: reader.result
+        img: reader.result,
       });
     };
     reader.readAsDataURL(img);
   };
-  invalidPrice = t => {
+  invalidPrice = (t) => {
     var str = t.toString();
     let count = 0;
     for (let i = 0; i < str.length; i++) {
@@ -138,85 +110,85 @@ class Food extends Component {
       amount,
       file,
     } = this.state;
-    console.log(this.state)
+    console.log(this.state);
     if (name.length <= 0) {
       this.setState({
-        noti: "Name invalid"
+        noti: "Name invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (amount == 0) {
       this.setState({
-        noti: "Amount is requerid"
+        noti: "Amount is requerid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (chef.length <= 0) {
       this.setState({
-        noti: "Chef invalid"
+        noti: "Chef invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (release_date === null) {
       this.setState({
-        noti: "Day invalid"
+        noti: "Day invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (!this.invalidPrice(price)) {
       this.setState({
-        noti: "Price invalid"
+        noti: "Price invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (category === "") {
       this.setState({
-        noti: "Category invalid"
+        noti: "Category invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (restaurant === "") {
       this.setState({
-        noti: "Restaurant invalid"
+        noti: "Restaurant invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (file === null) {
       this.setState({
-        noti: "File invalid"
+        noti: "File invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     this.props.addFood(
@@ -245,81 +217,79 @@ class Food extends Component {
       describe,
       chef,
       file,
-      id, 
+      id,
       img,
-      amount
+      amount,
     } = this.state;
     if (name.length <= 0) {
       this.setState({
-        noti: "Name invalid"
+        noti: "Name invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (chef.length <= 0) {
       this.setState({
-        noti: "Chef invalid"
+        noti: "Chef invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (release_date === null) {
       this.setState({
-        noti: "Day invalid"
+        noti: "Day invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (!this.invalidPrice(price)) {
       this.setState({
-        noti: "Price invalid"
+        noti: "Price invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (category === "") {
       this.setState({
-        noti: "Category invalid"
+        noti: "Category invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (restaurant === "") {
       this.setState({
-        noti: "Restaurant invalid"
+        noti: "Restaurant invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
-   
 
-    
-    if (file === null && img === '' ) {
+    if (file === null && img === "") {
       this.setState({
-        noti: "File invalid"
+        noti: "File invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     this.props.updatefood(
@@ -352,7 +322,9 @@ class Food extends Component {
             <button className="btn-custom" disabled type="button">
               Update
             </button>
-            <button className="btn-custom" onClick={() => this.reset()}>Reset</button>
+            <button className="btn-custom" onClick={() => this.reset()}>
+              Reset
+            </button>
           </div>
         </div>
       );
@@ -370,7 +342,9 @@ class Food extends Component {
             >
               Update
             </button>
-            <button className="btn-custom" onClick={() => this.reset()}>Reset</button>
+            <button className="btn-custom" onClick={() => this.reset()}>
+              Reset
+            </button>
           </div>
         </div>
       );
@@ -379,37 +353,37 @@ class Food extends Component {
   reset = () => {
     this.setState({
       noti: "",
-        name: "",
-        file: null,
-        imagePreviewUrl: null,
-        curr: "add",
-        category: "danh mục",
-        restaurant: "nhà hàng",
-        amount:0,
-        name: "",
-        release_date: null,
-        price: "",
-        img: "",
-        describe: "",
-        id_nsx: "",     
-        id_category: "",
-        id_restaurant: "",
-        chef:"",
-        noti: "",
-        id: null,
-        sizes:[]
-    })
-  }
+      name: "",
+      file: null,
+      imagePreviewUrl: null,
+      curr: "add",
+      category: "danh mục",
+      restaurant: "nhà hàng",
+      amount: 0,
+      name: "",
+      release_date: null,
+      price: "",
+      img: "",
+      describe: "",
+      id_nsx: "",
+      id_category: "",
+      id_restaurant: "",
+      chef: "",
+      noti: "",
+      id: null,
+      sizes: [],
+    });
+  };
   renderMenuCategory = () => {
     if (this.props.category) {
-      console.log("hihi",this.props.category)
+      console.log("hihi", this.props.category);
       return this.props.category.map((element, index) => {
         return (
           <li
             onClick={() =>
               this.setState({
                 category: element.name,
-                id_category: element._id
+                id_category: element._id,
               })
             }
           >
@@ -424,14 +398,14 @@ class Food extends Component {
 
   renderMenuCategory = () => {
     if (this.props.category) {
-      console.log("hihi",this.props.category)
+      console.log("hihi", this.props.category);
       return this.props.category.map((element, index) => {
         return (
           <li
             onClick={() =>
               this.setState({
                 category: element.name,
-                id_category: element._id
+                id_category: element._id,
               })
             }
           >
@@ -443,7 +417,7 @@ class Food extends Component {
       return null;
     }
   };
-  getNameCategoryByID = id => {
+  getNameCategoryByID = (id) => {
     for (let i = 0; i < this.props.category.length; i++) {
       if (id === this.props.category[i]._id) return this.props.category[i].name;
     }
@@ -456,7 +430,7 @@ class Food extends Component {
             onClick={() =>
               this.setState({
                 restaurant: element.name,
-                id_restaurant: element._id
+                id_restaurant: element._id,
               })
             }
           >
@@ -470,14 +444,14 @@ class Food extends Component {
   };
   renderMenuRestaurant = () => {
     if (this.props.restaurant) {
-      console.log("hihi",this.props.restaurant)
+      console.log("hihi", this.props.restaurant);
       return this.props.restaurant.map((element, index) => {
         return (
           <li
             onClick={() =>
               this.setState({
                 restaurant: element.name,
-                id_restaurant: element._id
+                id_restaurant: element._id,
               })
             }
           >
@@ -489,36 +463,33 @@ class Food extends Component {
       return null;
     }
   };
-  getNameRestaurantByID = id => {
+  getNameRestaurantByID = (id) => {
     for (let i = 0; i < this.props.restaurant.length; i++) {
-      if (id === this.props.restaurant[i]._id) return this.props.restaurant[i].name;
+      if (id === this.props.restaurant[i]._id)
+        return this.props.restaurant[i].name;
     }
   };
 
   handleCheckChieldElement = (event, key) => {
     let sizecheck = this.state.check;
     sizecheck[key] = !sizecheck[key];
-    
-    if(this.checkedCheckbox.has(event)){
+
+    if (this.checkedCheckbox.has(event)) {
       this.checkedCheckbox.delete(event);
-    }else{
+    } else {
       this.checkedCheckbox.add(event);
     }
     this.setState({
-      sizes: this.checkedCheckbox
-    })
-   
-  }
-  handleUpdate = (element) =>{
+      sizes: this.checkedCheckbox,
+    });
+  };
+  handleUpdate = (element) => {
     this.setState({
       curr: "update",
       name: element.name,
-      release_date: element.release_date.slice(
-        0,
-        10
-      ),
+      release_date: element.release_date.slice(0, 10),
       price: element.price,
-      chef:element.chef,
+      chef: element.chef,
       describe: element.describe,
       category: element.category,
       id_category: element.id_category,
@@ -527,14 +498,14 @@ class Food extends Component {
       id_nsx: element.id_nsx,
       img: element.img,
       id: element._id,
-      amount:element.amount
-    })
-  }
+      amount: element.amount,
+    });
+  };
   handeSearch = (e) => {
-    if(e === 13) {
-        this.props.searchTextSubmit()
+    if (e === 13) {
+      this.props.searchTextSubmit();
     }
-  }
+  };
   render() {
     return (
       <section id="main-content">
@@ -549,18 +520,23 @@ class Food extends Component {
                 <Link to="/">Trang chủ</Link>
               </li>
               <li>
-                <i className="fa fa-table" />Bảng
+                <i className="fa fa-table" />
+                Bảng
               </li>
               <li>
-                <i className="fa fa-th-list" />Quản lý
+                <i className="fa fa-th-list" />
+                Quản lý
               </li>
               <li>
-              <div className="navbar-form">
-                  <input className="form-control" placeholder="Search" type="text" 
-                     onChange={(e) => this.props.setSearchText(e.target.value)}
-                     onKeyUp={(e) => this.handeSearch(e.keyCode)}
+                <div className="navbar-form">
+                  <input
+                    className="form-control"
+                    placeholder="Search"
+                    type="text"
+                    onChange={(e) => this.props.setSearchText(e.target.value)}
+                    onKeyUp={(e) => this.handeSearch(e.keyCode)}
                   />
-              </div>
+                </div>
               </li>
             </ol>
           </div>
@@ -591,7 +567,7 @@ class Food extends Component {
                       <i /> Danh mục
                     </th>
                     <th>
-                      <i  /> Hình ảnh
+                      <i /> Hình ảnh
                     </th>
                     <th>
                       <i /> Chi tiết
@@ -607,19 +583,20 @@ class Food extends Component {
                     return (
                       <tr>
                         <td>{element.name}</td>
-                        <td>{element.release_date.slice(0,10)}</td>
+                        <td>{element.release_date.slice(0, 10)}</td>
                         <td>{element.price}</td>
                         <td>{element.amount}</td>
                         <td>{element.restaurant}</td>
                         <td>{element.category}</td>
-                        <td><img width="100px" height="100px" src={element.img}/></td>
+                        <td>
+                          <img width="100px" height="100px" src={element.img} />
+                        </td>
                         <td style={{ width: "40%" }}>{element.describe}</td>
-                        <td >{element.chef}</td>
+                        <td>{element.chef}</td>
                         <td>
                           <div className="btn-group">
                             <a
-                              onClick={() => this.handleUpdate(element)
-                              }
+                              onClick={() => this.handleUpdate(element)}
                               className="btn btn-success"
                             >
                               <i className="icon_check_alt2" />
@@ -659,9 +636,9 @@ class Food extends Component {
                       </label>
                       <div className="col-lg-10">
                         <input
-                          onChange={e => {
+                          onChange={(e) => {
                             this.setState({
-                              name: e.target.value
+                              name: e.target.value,
                             });
                           }}
                           value={this.state.name}
@@ -681,9 +658,9 @@ class Food extends Component {
                       <div className="col-lg-10">
                         <input
                           value={this.state.release_date}
-                          onChange={e =>
+                          onChange={(e) =>
                             this.setState({
-                              release_date: e.target.value
+                              release_date: e.target.value,
                             })
                           }
                           className="form-control "
@@ -701,9 +678,9 @@ class Food extends Component {
                       <div className="col-lg-10">
                         <input
                           value={this.state.price}
-                          onChange={e =>
+                          onChange={(e) =>
                             this.setState({
-                              price: e.target.value
+                              price: e.target.value,
                             })
                           }
                           className="form-control "
@@ -721,9 +698,9 @@ class Food extends Component {
                         <input
                           value={this.state.amount}
                           min="0"
-                          onChange={e =>
+                          onChange={(e) =>
                             this.setState({
-                              amount: e.target.value
+                              amount: e.target.value,
                             })
                           }
                           className="form-control "
@@ -740,9 +717,9 @@ class Food extends Component {
                       <div className="col-lg-10">
                         <input
                           value={this.state.describe}
-                          onChange={e =>
+                          onChange={(e) =>
                             this.setState({
-                              describe: e.target.value
+                              describe: e.target.value,
                             })
                           }
                           className="form-control"
@@ -761,9 +738,9 @@ class Food extends Component {
                       <div className="col-lg-10">
                         <input
                           value={this.state.chef}
-                          onChange={e =>
+                          onChange={(e) =>
                             this.setState({
-                              chef: e.target.value
+                              chef: e.target.value,
                             })
                           }
                           className="form-control"
@@ -811,7 +788,7 @@ class Food extends Component {
                         </ul>
                       </div>
                     </div>
-                    
+
                     <div className="form-group ">
                       <label for="comment" className="control-label col-lg-2">
                         Image upload{" "}
@@ -823,7 +800,7 @@ class Food extends Component {
                           id="ccomment"
                           name="comment"
                           required
-                          onChange={e =>
+                          onChange={(e) =>
                             this.handleChangeImg(e.target.files[0])
                           }
                         />
