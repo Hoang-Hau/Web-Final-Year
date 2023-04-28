@@ -122,6 +122,61 @@ exports.getBillByIDUser = async (req, res) => {
   res.status(200).json({ data: billFind });
 };
 
+exports.deleteBill = async (req, res) => {
+  if (typeof req.params.id === "undefined") {
+    res.status(402).json({ msg: "data invalid" });
+    return;
+  }
+  let billFind = null;
+  try {
+    billFind = await bill.findOne({ _id: req.params.id, issend: "99" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "server found" });
+    return;
+  }
+  if (billFind === null) {
+    res.status(400).json({ msg: "invalid" });
+    return;
+  }
+  try {
+    billFind.remove();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "server found" });
+    return;
+  }
+  res.status(200).json({ msg: "success" });
+};
+exports.statisticalTop10 = async (req, res) => {
+  let billFind = null;
+  try {
+    billFind = await bill.find({ issend: "1" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+    return;
+  }
+  let arr = [];
+  let len = billFind.length;
+  for (let i = 0; i < len; i++) {
+    let lenP = billFind[i].products.length;
+    for (let j = 0; j < lenP; j++) {
+      let index = arr.findIndex(
+        (element) => billFind[i].products[j]._id === element._id
+      );
+      if (index === -1) {
+        arr.push(billFind[i].products[j]);
+      } else {
+        arr[index].count += Number(billFind[i].products[j].count);
+      }
+    }
+  }
+  arr.sort(function (a, b) {
+    return b.count - a.count;
+  });
+  res.status(200).json({ data: arr.length > 10 ? arr.slice(0, 10) : arr });
+};
 exports.statisticaRevenueDay = async (req, res) => {
   if (
     typeof req.body.day === "undefined" ||
