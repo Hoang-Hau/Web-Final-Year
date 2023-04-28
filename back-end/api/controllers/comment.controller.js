@@ -2,6 +2,42 @@
 const _comment = require("../models/comment.model");
 const product = require("../models/food.model");
 
+exports.mycomment = async (req, res) => {
+  if (
+    typeof req.body.id_user === "undefined" ||
+    typeof req.body.id_product === "undefined" ||
+    typeof req.body.name === "undefined" ||
+    typeof req.body.comment === "undefined"
+  ) {
+    res.status(422).json({ msg: "Invalid data" });
+    return;
+  }
+
+  let { id_user, id_product, name, comment } = req.body;
+  let productFind;
+  try {
+    productFind = await product.findById(id_product);
+  } catch (err) {
+    res.status(422).json({ msg: " ID product Invalid data" });
+    return;
+  }
+  const new_comment = _comment({
+    id_user: id_user,
+    id_product: id_product,
+    name: name,
+    comment: comment,
+  });
+  try {
+    new_comment.save();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+    return;
+  }
+  res.status(201).json({ msg: "success" });
+  return;
+};
+
 exports.getCommentByIDProduct = async (req, res) => {
   if (
     typeof req.body.id_product === "undefined" ||
