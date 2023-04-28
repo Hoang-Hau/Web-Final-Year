@@ -14,7 +14,7 @@ const commentRouter = require("./api/routers/comment.router");
 const billRouter = require("./api/routers/bill.router");
 const cartRouter = require("./api/routers/cart.router");
 const adminRouter = require("./api/routers/admin.router");
-const URL = `mongodb+srv://quanlycang:i9Ckja1C9SWUvepw@cluster0.xkqgiii.mongodb.net/?retryWrites=true&w=majority`;
+const URL = `mongodb+srv://hoangconghau2001:hd2hqMfwDlvbonZD@website.ortsjql.mongodb.net/?retryWrites=true&w=majority`;
 const test = () => {
   Object.keys(data).forEach(function (k) {
     var _dic = [];
