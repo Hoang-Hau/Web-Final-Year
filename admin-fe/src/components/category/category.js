@@ -12,7 +12,48 @@ class Category extends Component {
       currType: "add",
     };
   }
-
+  componentWillMount() {
+    let tmp = [];
+    for (let i = 1; i <= this.props.totalpage; i++) {
+      tmp.push(i);
+    }
+    this.setState({ pagination: tmp });
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.totalpage !== this.props.totalpage) {
+      let tmp = [];
+      for (let i = 1; i <= nextProps.totalpage; i++) {
+        tmp.push(i);
+      }
+      this.setState({ pagination: tmp });
+    }
+    if (nextProps.isadd === false) {
+      this.setState({
+        noti: "Please Change name",
+      });
+    } else if (nextProps.isadd === true) {
+      this.setState({
+        noti: "",
+        name: "",
+        currType: "add",
+      });
+    }
+    if (nextProps.isupdate === false) {
+      this.setState({
+        noti: "update fail",
+      });
+    } else if (nextProps.isupdate === true) {
+      this.setState({
+        noti: "",
+        id: null,
+        name: "",
+        currType: "add",
+      });
+    }
+  }
+  add = () => {
+    this.props.addCategory(this.state.name);
+  };
   renderPagination() {
     if (this.state.pagination.length === 0) {
       return null;
