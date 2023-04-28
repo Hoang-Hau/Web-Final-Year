@@ -206,6 +206,43 @@ exports.verifyForgotPassword = async (req, res) => {
   res.status(200).json({ msg: "success", otp: otp });
 };
 
+exports.forgotPassword = async (req, res) => {
+  if (
+    typeof req.body.email === "undefined" ||
+    typeof req.body.otp === "undefined" ||
+    typeof req.body.newPassword === "undefined"
+  ) {
+    res.status(402).json({ msg: "Invalid data" });
+    return;
+  }
+  let { email, otp, newPassword } = req.body;
+  let userFind = null;
+  try {
+    userFind = await user.findOne({ email: email });
+  } catch (err) {
+    res.json({ msg: err });
+    return;
+  }
+  if (userFind == null) {
+    res.status(422).json({ msg: "Invalid data" });
+    return;
+  }
+  if (userFind.token != otp) {
+    res.status(422).json({ msg: "OTP fail" });
+    return;
+  }
+
+  userFind.password = bcrypt.hashSync(newPassword, 10);
+  try {
+    await userFind.save();
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+    return;
+  }
+  res.status(201).json({ msg: "success" });
+};
+
 exports.updateInfor = async (req, res) => {
   if (
     typeof req.body.firstName === "undefined" ||
