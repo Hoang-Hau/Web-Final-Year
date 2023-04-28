@@ -27,7 +27,42 @@ class Statistical extends Component {
       totalQuauter: null,
     };
   }
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.dataByDay !== this.props.dataByDay) {
+      this.setState({
+        billNumberDay: nextProps.dataByDay.length,
+        productNumberDay: this.calculatorProductNumber(nextProps.dataByDay),
+        UserNumberDay: this.calculatorUserNumber(nextProps.dataByDay),
+        totalDay: this.calculatorTotal(nextProps.dataByDay),
+      });
+    }
+    if (nextProps.dataByMonth !== this.props.dataByMonth) {
+      this.setState({
+        billNumberMonth: nextProps.dataByMonth.length,
+        productNumberMonth: this.calculatorProductNumber(nextProps.dataByMonth),
+        UserNumberMonth: this.calculatorUserNumber(nextProps.dataByMonth),
+        totalMonth: this.calculatorTotal(nextProps.dataByMonth),
+      });
+    }
+    if (nextProps.dataByYear !== this.props.dataByYear) {
+      this.setState({
+        billNumberYear: nextProps.dataByYear.length,
+        productNumberYear: this.calculatorProductNumber(nextProps.dataByYear),
+        UserNumberYear: this.calculatorUserNumber(nextProps.dataByYear),
+        totalYear: this.calculatorTotal(nextProps.dataByYear),
+      });
+    }
+    if (nextProps.dataByQuauter !== this.props.dataByQuauter) {
+      this.setState({
+        billNumberQuauter: nextProps.dataByQuauter.length,
+        productNumberQuauter: this.calculatorProductNumber(
+          nextProps.dataByQuauter
+        ),
+        UserNumberQuauter: this.calculatorUserNumber(nextProps.dataByQuauter),
+        totalQuauter: this.calculatorTotal(nextProps.dataByQuauter),
+      });
+    }
+  }
   calculatorTotal = (bills) => {
     let total = 0;
     for (let i = 0; i < bills.length; i++) {

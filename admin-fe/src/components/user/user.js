@@ -36,14 +36,14 @@ class User extends Component {
     }
     if (nextProps.isadd === false) {
       this.setState({
-        noti: "Email already exist "
+        noti: "Email already exist ",
       });
     } else if (nextProps.isadd === true) {
       this.reset();
     }
     if (nextProps.isupdate === false) {
       this.setState({
-        noti: "Update fail"
+        noti: "Update fail",
       });
     } else if (nextProps.isupdate === true) {
       this.reset();
@@ -83,20 +83,13 @@ class User extends Component {
       );
     }
   }
-  isvalidEmail = email => {
+  isvalidEmail = (email) => {
     if (
       email.length < 6 ||
       email.indexOf(".") === -1 ||
       email.indexOf("@") === -1
     )
       return false;
-    return true;
-  };
-  isvalidPhone = phone => {
-    if (phone.length < 10) return false;
-    for (let i = 0; i < phone.length; i++) {
-      if (phone.charAt(i) < "0" || phone.charAt(i) > "9") return false;
-    }
     return true;
   };
 
@@ -109,66 +102,66 @@ class User extends Component {
       address,
       phone_number,
       is_admin,
-      is_manage
+      is_manage,
     } = this.state;
     if (!this.isvalidEmail(email)) {
       this.setState({
-        noti: "Email invalid"
+        noti: "Email invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (password.length < 6) {
       this.setState({
-        noti: "Password invalid"
+        noti: "Password invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (firstName.length < 3) {
       this.setState({
-        noti: "First name invalid"
+        noti: "First name invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (lastName.length < 3) {
       this.setState({
-        noti: "Last name invalid"
+        noti: "Last name invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (address.length < 3) {
       this.setState({
-        noti: "Address invalid"
+        noti: "Address invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (!this.isvalidPhone(this.state.phone_number)) {
       this.setState({
-        noti: "Phone invalid"
+        noti: "Phone invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     this.props.addUser(
@@ -191,66 +184,66 @@ class User extends Component {
       address,
       phone_number,
       is_admin,
-      is_manage
+      is_manage,
     } = this.state;
     if (!this.isvalidEmail(email)) {
       this.setState({
-        noti: "Email invalid"
+        noti: "Email invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (password.length < 6) {
       this.setState({
-        noti: "Password invalid"
+        noti: "Password invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (firstName.length < 3) {
       this.setState({
-        noti: "First name invalid"
+        noti: "First name invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (lastName.length < 3) {
       this.setState({
-        noti: "Last name invalid"
+        noti: "Last name invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (address.length < 3) {
       this.setState({
-        noti: "Address invalid"
+        noti: "Address invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     if (!this.isvalidPhone(this.state.phone_number)) {
       this.setState({
-        noti: "Phone invalid"
+        noti: "Phone invalid",
       });
       return;
     } else {
       this.setState({
-        noti: ""
+        noti: "",
       });
     }
     this.props.updateUser(
@@ -264,14 +257,8 @@ class User extends Component {
     );
   };
   renderBtn = () => {
-    const {
-      email,
-      firstName,
-      lastName,
-      address,
-      phone_number,
-      is_admin
-    } = this.state;
+    const { email, firstName, lastName, address, phone_number, is_admin } =
+      this.state;
     if (this.state.currType === "add") {
       return (
         <div className="form-group">
@@ -322,7 +309,7 @@ class User extends Component {
       address: "",
       phone_number: "",
       currType: "add",
-      is_admin: false
+      is_admin: false,
     });
   };
   renderPassword = () => {
@@ -335,9 +322,9 @@ class User extends Component {
           <div className="col-lg-10">
             <input
               value={this.state.password}
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  password: e.target.value
+                  password: e.target.value,
                 });
               }}
               className="form-control"
@@ -360,9 +347,9 @@ class User extends Component {
             <input
               disabled
               value={this.state.password}
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  password: e.target.value
+                  password: e.target.value,
                 });
               }}
               className="form-control"
@@ -387,9 +374,9 @@ class User extends Component {
           <div className="col-lg-10">
             <input
               value={this.state.email}
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  email: e.target.value
+                  email: e.target.value,
                 });
               }}
               className="form-control"
@@ -412,9 +399,9 @@ class User extends Component {
             <input
               disabled
               value={this.state.email}
-              onChange={e => {
+              onChange={(e) => {
                 this.setState({
-                  email: e.target.value
+                  email: e.target.value,
                 });
               }}
               className="form-control"
@@ -445,10 +432,12 @@ class User extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <i className="fa fa-table" />Table
+                <i className="fa fa-table" />
+                Table
               </li>
               <li>
-                <i className="fa fa-th-list" />User Manager
+                <i className="fa fa-th-list" />
+                User Manager
               </li>
             </ol>
           </div>
@@ -461,39 +450,50 @@ class User extends Component {
                 <tbody>
                   <tr>
                     <th>
-                      <i className="icon_profile" />Email
+                      <i className="icon_profile" />
+                      Email
                     </th>
                     <th>
-                      <i className="icon_profile" />Admin
+                      <i className="icon_profile" />
+                      Admin
                     </th>
                     <th>
-                      <i className="icon_profile" />Manage
+                      <i className="icon_profile" />
+                      Manage
                     </th>
                     <th>
-                      <i className="icon_profile" />User
+                      <i className="icon_profile" />
+                      User
                     </th>
                     <th>
-                      <i className="icon_profile" />First name
+                      <i className="icon_profile" />
+                      First name
                     </th>
                     <th>
-                      <i className="icon_profile" />Last name
+                      <i className="icon_profile" />
+                      Last name
                     </th>
                     <th>
-                      <i className="icon_profile" />Address
+                      <i className="icon_profile" />
+                      Address
                     </th>
                     <th>
-                      <i className="icon_profile" />PhoneNumber
+                      <i className="icon_profile" />
+                      PhoneNumber
                     </th>
                     <th>
-                      <i className="icon_cogs" />Action
+                      <i className="icon_cogs" />
+                      Action
                     </th>
                   </tr>
                   {this.props.user.map((element, index) => {
-                    if(element.is_admin){
+                    if (element.is_admin) {
                       return (
                         <tr>
                           <td>{element.email}</td>
-                          <td><i className="icon_check_alt2" /></td>
+                          <td>
+                            <i className="icon_check_alt2" />
+                          </td>
                           <td></td>
                           <td></td>
                           <td>{element.firstName}</td>
@@ -513,7 +513,7 @@ class User extends Component {
                                     password: element.phone_number,
                                     is_admin: element.is_admin,
                                     is_manage: element.is_manage,
-                                    currType: "update"
+                                    currType: "update",
                                   })
                                 }
                                 className="btn btn-success"
@@ -533,12 +533,14 @@ class User extends Component {
                         </tr>
                       );
                     }
-                    if(element.is_manage){
+                    if (element.is_manage) {
                       return (
                         <tr>
                           <td>{element.email}</td>
                           <td></td>
-                          <td><i className="icon_check_alt2" /></td>
+                          <td>
+                            <i className="icon_check_alt2" />
+                          </td>
                           <td></td>
                           <td>{element.firstName}</td>
                           <td>{element.lastName}</td>
@@ -557,7 +559,7 @@ class User extends Component {
                                     password: element.phone_number,
                                     is_admin: element.is_admin,
                                     is_manage: element.is_manage,
-                                    currType: "update"
+                                    currType: "update",
                                   })
                                 }
                                 className="btn btn-success"
@@ -577,13 +579,18 @@ class User extends Component {
                         </tr>
                       );
                     }
-                    if(element.is_admin === false && element.is_manage === false){
+                    if (
+                      element.is_admin === false &&
+                      element.is_manage === false
+                    ) {
                       return (
                         <tr>
                           <td>{element.email}</td>
                           <td></td>
                           <td></td>
-                          <td><i className="icon_check_alt2" /></td>
+                          <td>
+                            <i className="icon_check_alt2" />
+                          </td>
                           <td>{element.firstName}</td>
                           <td>{element.lastName}</td>
                           <td>{element.address}</td>
@@ -601,7 +608,7 @@ class User extends Component {
                                     password: element.phone_number,
                                     is_admin: element.is_admin,
                                     is_manage: element.is_manage,
-                                    currType: "update"
+                                    currType: "update",
                                   })
                                 }
                                 className="btn btn-success"
@@ -621,8 +628,6 @@ class User extends Component {
                         </tr>
                       );
                     }
-                    
-                   
                   })}
                 </tbody>
               </table>
@@ -645,9 +650,9 @@ class User extends Component {
                       </label>
                       <div className="col-lg-10">
                         <input
-                          onChange={e => {
+                          onChange={(e) => {
                             this.setState({
-                              firstName: e.target.value
+                              firstName: e.target.value,
                             });
                           }}
                           value={this.state.firstName}
@@ -662,13 +667,14 @@ class User extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="lname" className="control-label col-lg-2">
-                        Last Name<span className="required" />
+                        Last Name
+                        <span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input
-                          onChange={e => {
+                          onChange={(e) => {
                             this.setState({
-                              lastName: e.target.value
+                              lastName: e.target.value,
                             });
                           }}
                           value={this.state.lastName}
@@ -683,13 +689,14 @@ class User extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="address" className="control-label col-lg-2">
-                        Address<span className="required" />
+                        Address
+                        <span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input
-                          onChange={e => {
+                          onChange={(e) => {
                             this.setState({
-                              address: e.target.value
+                              address: e.target.value,
                             });
                           }}
                           value={this.state.address}
@@ -704,13 +711,14 @@ class User extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="phone" className="control-label col-lg-2">
-                        Phone number<span className="required" />
+                        Phone number
+                        <span className="required" />
                       </label>
                       <div className="col-lg-10">
                         <input
-                          onChange={e => {
+                          onChange={(e) => {
                             this.setState({
-                              phone_number: e.target.value
+                              phone_number: e.target.value,
                             });
                           }}
                           value={this.state.phone_number}
@@ -729,27 +737,47 @@ class User extends Component {
                           <label class="radio-inline">
                             <input
                               checked={this.state.is_admin}
-                              onClick={() => this.setState({ is_admin: true, is_manage: false })}
+                              onClick={() =>
+                                this.setState({
+                                  is_admin: true,
+                                  is_manage: false,
+                                })
+                              }
                               type="radio"
                               name="optradio"
-                            />Admin
+                            />
+                            Admin
                           </label>
                           <label class="radio-inline">
                             <input
                               checked={this.state.is_manage}
-                              onClick={() => this.setState({ is_admin: false, is_manage: true })}
+                              onClick={() =>
+                                this.setState({
+                                  is_admin: false,
+                                  is_manage: true,
+                                })
+                              }
                               type="radio"
                               name="optradio"
-                            />Manage
+                            />
+                            Manage
                           </label>
 
                           <label class="radio-inline">
                             <input
-                               checked={!this.state.is_manage && !this.state.is_admin}
-                              onClick={() => this.setState({ is_admin: false, is_manage: false })}
+                              checked={
+                                !this.state.is_manage && !this.state.is_admin
+                              }
+                              onClick={() =>
+                                this.setState({
+                                  is_admin: false,
+                                  is_manage: false,
+                                })
+                              }
                               type="radio"
                               name="optradio"
-                            />User
+                            />
+                            User
                           </label>
                         </form>
                       </div>
